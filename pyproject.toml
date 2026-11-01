@@ -23,3 +23,6 @@ dev = [
     "pytest>=9.2.0",
     "reportlab>=5.1.0",
 ]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
