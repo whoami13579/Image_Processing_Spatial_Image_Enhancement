@@ -13,6 +13,7 @@ __pycache__/
 build/
 dist/
 *.spec
+!SpatialEnhancement.spec
 comparison_contact.png
 gamma_contact.png
 report/pdf_contact.png

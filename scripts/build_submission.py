@@ -34,6 +34,7 @@ def required_files() -> list[Path]:
         Path("uv.lock"),
         Path("README.md"),
         Path("run_homework.py"),
+        Path("SpatialEnhancement.spec"),
         Path("outputs/results.json"),
         Path("report/report.md"),
         Path("report/build_report.py"),

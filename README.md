@@ -8,7 +8,7 @@ Image Processing Homework 1. The project manually implements gamma correction, C
 - [uv](https://docs.astral.sh/uv/) with Python 3.12 managed through uv
 - VS Code is recommended for editing; select the project `.venv` interpreter after `uv sync`
 
-The included `SpatialEnhancement.exe` in the submission folder (or `dist/SpatialEnhancement.exe` in the development project) runs without a separate Python installation. The source workflow uses uv exclusively.
+The rebuilt `dist/SpatialEnhancement.exe` opens a Tkinter viewer when double-clicked and bundles the saved outputs and inputs, so it requires no separate Python installation. The source workflow uses uv exclusively. Previously generated submission packages are not automatically updated by rebuilding.
 
 ## Setup and run
 
@@ -22,13 +22,33 @@ uv run python -m spatial_image_enhancement --input HW1_test_image --output outpu
 
 On this Windows machine, the `pytest.exe` launcher was blocked by Application Control; `uv run python -m pytest -q` worked and ran all 11 tests. The program checks all six files before processing and reports missing or incorrectly formatted inputs.
 
-Use the Windows executable from any current directory:
+### Desktop viewer
+
+Double-click `dist/SpatialEnhancement.exe`, or run the viewer from source:
+
+```powershell
+uv run python run_homework.py
+```
+
+The viewer shows Original, Gamma Correction, Histogram Equalization, and Gamma Correction + Contrast Stretching side by side, with the saved original/equalized histogram figure below. Select any of the six filenames, use Previous/Next, or press Left/Right. Images resize with the window while preserving aspect ratio; resizing affects only the preview.
+
+`Regenerate preview` runs the unchanged processing pipeline in a background thread and displays temporary results. It never overwrites `outputs/`, numerical results, or the report. Temporary previews are discarded on exit. Missing or unreadable images are reported in the status line.
+
+Resource lookup is independent of the working directory: the GUI uses directories beside the executable, then the project directories for a development build in `dist/`, then bundled resources. A copied executable can run standalone. Source GUI execution uses the project directories. To select other directories explicitly:
+
+```powershell
+uv run python run_homework.py --gui --input C:\data\HW1_test_image --output C:\data\outputs
+```
+
+### Command line
+
+The module command and installed `spatial-image-enhancement` command retain their existing behavior. Existing executable processing arguments also select CLI mode; use `--cli` to process with defaults:
 
 ```powershell
 & .\SpatialEnhancement.exe --input .\HW1_test_image --output .\outputs
 ```
 
-When executing from another directory, use absolute `--input` and `--output` paths. If neither is supplied, the executable looks for `HW1_test_image` beside itself and writes `outputs` beside itself. Source execution defaults to the current directory. To override the per-image selected gamma values, create a JSON object with exactly the six filename keys and supply `--gamma-config path\to\config.json`. Example:
+When executing the CLI from another directory, use absolute `--input` and `--output` paths. `SpatialEnhancement.exe --cli` looks for `HW1_test_image` beside itself and writes `outputs` beside itself. Module CLI execution defaults to the current directory. The windowed executable attaches to an invoking console when available; for reliable console output and redirection, use `uv run python -m spatial_image_enhancement`. To override the per-image selected gamma values, create a JSON object with exactly the six filename keys and supply `--gamma-config path\to\config.json`. Example:
 
 ```json
 {
@@ -56,10 +76,10 @@ The six originals are preserved in `HW1_test_image` and are never edited by the 
 ## Rebuild the Windows executable
 
 ```powershell
-uv run pyinstaller --onefile --name SpatialEnhancement --noconfirm --clean run_homework.py
+uv run pyinstaller --noconfirm --clean SpatialEnhancement.spec
 ```
 
-The output is `dist/SpatialEnhancement.exe`. PyInstaller's `build/` directory and `.spec` file are intermediate development artifacts and are excluded from the submission package.
+The output is `dist/SpatialEnhancement.exe`. The tracked spec bundles inputs/outputs and selects `console=False`. Use the spec when rebuilding to preserve this configuration. PyInstaller's `build/` directory is an intermediate development artifact. To refresh the existing submission folder and ZIP after reviewing the local changes, run `uv run python scripts/build_submission.py`.
 
 ## Algorithm notes
 
@@ -70,6 +90,10 @@ The output is `dist/SpatialEnhancement.exe`. PyInstaller's `build/` directory an
 `src/spatial_image_enhancement/algorithms.py` contains the explicit calculations and nested pixel loops. NumPy stores arrays, Pillow reads and writes PNGs, and Matplotlib draws figures. No ready-made image enhancement API is used. The report documents equations, selection rationale, measurements, and the specific external library calls.
 
 ## Verification and limitations
+
+GUI update verification (November 5, 2026): `uv run python -m pytest -q` reports 17 passed, including all 11 original tests. Tkinter integration tests exercise all six images and their paired histogram figures, navigation, resizing, missing-file handling, resource paths, and background regeneration. All 18 regenerated enhanced images are pixel-identical to saved outputs; regenerated `results.json` is byte-identical. All 66 protected baseline files (inputs, outputs, report, algorithm and CLI source) remain byte-identical.
+
+PyInstaller successfully rebuilt the executable with PE subsystem 2 (Windows GUI, no console). Runtime verification of a standalone EXE copied to an external temporary directory was blocked by Windows Application Control (WinError 4551). Automated desktop visual inspection was also denied by the computer-use permission system. Executable runtime and visual inspection therefore remain unverified on this machine; the source GUI integration checks passed. No security settings were changed.
 
 On November 1, 2026, `uv run python -m pytest -q` reported 11 passed. The PyInstaller executable ran from a temporary directory outside the source tree, produced all six comparison and histogram figures, and its 18 enhanced PNGs were pixel identical to the source run. All 18 verified outputs were 600 × 400 mode L. The executable returned a descriptive missing-file message and exit code 1. It was not tested on a separate Python-free Windows installation.
 
