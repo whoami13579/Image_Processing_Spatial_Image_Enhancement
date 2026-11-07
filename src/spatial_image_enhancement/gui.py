@@ -16,7 +16,7 @@ PANELS = (
     ("Original", "original"),
     ("Gamma Correction", "gamma"),
     ("Histogram Equalization", "equalized"),
-    ("Gamma Correction +\nContrast Stretching", "combined"),
+    ("Bilateral Filtering + Gamma +\nContrast Stretching (Method 3)", "combined"),
 )
 
 
@@ -161,7 +161,7 @@ class EnhancementViewer:
             return
         self.regenerate_button.state(["disabled"])
         self.progress.start()
-        self.status.set("Generating all six previews with the existing pipeline; saved outputs are preserved.")
+        self.status.set("Generating all six previews, including bilateral Method 3; saved outputs are preserved.")
         self.worker = threading.Thread(target=self.generate_worker, daemon=True)
         self.worker.start()
 

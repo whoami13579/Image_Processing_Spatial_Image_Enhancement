@@ -3,7 +3,7 @@ import pytest
 from PIL import Image
 
 from spatial_image_enhancement.algorithms import (
-    combined_enhancement, contrast_stretch, gamma_transform,
+    bilateral_filter, combined_enhancement, contrast_stretch, gamma_transform,
     histogram_counts, histogram_equalize, histogram_model,
 )
 
@@ -44,7 +44,7 @@ def test_constant_images_preserve_tone(level):
 
 def test_combined_order_and_contrast():
     image = np.array([[0, 32, 64, 96, 128, 255]], dtype=np.uint8)
-    gamma = gamma_transform(image, 0.5)
+    gamma = gamma_transform(bilateral_filter(image), 0.5)
     expected = contrast_stretch(gamma, 0, 100)
     actual = combined_enhancement(image, 0.5, 0, 100)
     assert np.array_equal(actual, expected)

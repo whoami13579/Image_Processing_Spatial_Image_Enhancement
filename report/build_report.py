@@ -9,7 +9,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import inch
 from reportlab.platypus import (
-    BaseDocTemplate, Frame, Image, PageBreak, PageTemplate,
+    BaseDocTemplate, Frame, Image, KeepTogether, PageBreak, PageTemplate,
     Paragraph, Spacer, Table, TableStyle,
 )
 
@@ -106,8 +106,9 @@ def main() -> None:
             story.append(Paragraph(rich(" ".join(paragraph)), styles["ReportBody"]))
             paragraph.clear()
         if table_lines:
-            story.append(make_table(table_lines))
-            story.append(Spacer(1, 8))
+            # These short summary tables fit on a page; retain all six image
+            # rows together instead of stranding the last rows on the next page.
+            story.append(KeepTogether([make_table(table_lines), Spacer(1, 8)]))
             table_lines.clear()
 
     for line in lines:

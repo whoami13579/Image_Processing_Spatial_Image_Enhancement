@@ -1,0 +1,41 @@
+{
+  "pipeline": [
+    "original",
+    "bilateral",
+    "gamma",
+    "contrast_stretch"
+  ],
+  "bilateral": {
+    "window_size": 3,
+    "sigma_spatial": 1.0,
+    "sigma_range": 3.0
+  },
+  "gammas": {
+    "1-1.png": 0.5,
+    "1-2.png": 0.3,
+    "1-3.png": 0.5,
+    "1-4.png": 0.5,
+    "1-5.png": 0.3,
+    "1-6.png": 0.3
+  },
+  "stretch_percentiles": [
+    1.0,
+    99.5
+  ],
+  "output_max": {
+    "1-1.png": 255,
+    "1-2.png": 255,
+    "1-3.png": 255,
+    "1-4.png": 220,
+    "1-5.png": 255,
+    "1-6.png": 255
+  },
+  "pixel_sha256": {
+    "1-1.png": "297f8f1e2befc7d0329ec4d513ca0f0fdc9091e9478da51b76aa95472d028b87",
+    "1-2.png": "6319fb1c9760940993c9148d87c7ed4ae523da285e56ac4de469339e4227f045",
+    "1-3.png": "f8bdd1cf5078e4129f22640a390cd1a39cdad62938852d88a44651300eb41c8a",
+    "1-4.png": "b2d59f2dcba49ad7ead95bc21e8818694859930a8cbc01e477af6bc30f616978",
+    "1-5.png": "b19ea35ae9d984b8033ed93387e131d88129b42c01ff09822cdf9ecbb5502ec2",
+    "1-6.png": "908225a6428f557f7a18a32fed2c594909f0c753a47c12b1fd87f13134b524a4"
+  }
+}

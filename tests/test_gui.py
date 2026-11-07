@@ -91,7 +91,7 @@ def test_regeneration_preserves_all_saved_files_and_matches_18_pixels(viewer):
         time.sleep(0.02)
     assert viewer.temporary is not None
     assert events > 10  # The Tk event loop kept running during processing.
-    for folder in ("gamma", "equalized", "combined"):
+    for folder in ("gamma", "equalized", "combined", "baseline_method3/combined"):
         for name in gui.NAMES:
             with Image.open(saved / folder / name) as expected, Image.open(viewer.output / folder / name) as actual:
                 assert np.array_equal(np.asarray(expected), np.asarray(actual))

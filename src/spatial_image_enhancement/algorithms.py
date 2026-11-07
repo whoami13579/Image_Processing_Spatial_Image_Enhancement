@@ -1,4 +1,4 @@
-"""Manual enhancement equations. NumPy only stores arrays; it does not enhance them."""
+"""Manual enhancement equations, with NumPy operations for bilateral weights."""
 
 import math
 
@@ -101,12 +101,62 @@ def contrast_stretch(
     return _apply_table(image, table)
 
 
+def bilateral_filter(
+    image: np.ndarray, window_size: int = 3, sigma_spatial: float = 1.0,
+    sigma_range: float = 3.0,
+) -> np.ndarray:
+    """Manually accumulate spatial/range Gaussian weights over valid neighbors.
+
+    The window is clipped at boundaries and renormalized (no padding). Each
+    offset processes all overlapping pixels at once; memory remains O(H*W),
+    rather than constructing an H*W*window_size**2 neighborhood array.
+    Intensities are converted to float64 before subtraction to avoid uint8
+    wraparound, then clipped and rounded half up back to 8-bit grayscale.
+    """
+    _check_image(image)
+    if image.size == 0:
+        raise ValueError("image must contain pixels")
+    if (not isinstance(window_size, int) or isinstance(window_size, bool)
+            or window_size < 1 or window_size % 2 == 0):
+        raise ValueError("window_size must be a positive odd integer")
+    if not math.isfinite(sigma_spatial) or sigma_spatial <= 0:
+        raise ValueError("sigma_spatial must be finite and greater than zero")
+    if not math.isfinite(sigma_range) or sigma_range <= 0:
+        raise ValueError("sigma_range must be finite and greater than zero")
+
+    source = image.astype(np.float64)
+    height, width = source.shape
+    weighted_sum = np.zeros(source.shape, dtype=np.float64)
+    weight_sum = np.zeros(source.shape, dtype=np.float64)
+    radius = window_size // 2
+    # Offsets beyond an image dimension cannot have any valid neighbors.
+    for dy in range(-min(radius, height - 1), min(radius, height - 1) + 1):
+        for dx in range(-min(radius, width - 1), min(radius, width - 1) + 1):
+            scaled_y, scaled_x = dy / sigma_spatial, dx / sigma_spatial
+            spatial_weight = math.exp(-0.5 * (scaled_y * scaled_y + scaled_x * scaled_x))
+            y0, y1 = max(0, -dy), min(height, height - dy)
+            x0, x1 = max(0, -dx), min(width, width - dx)
+            center = source[y0:y1, x0:x1]
+            neighbor = source[y0 + dy:y1 + dy, x0 + dx:x1 + dx]
+            # Very small positive sigmas can overflow the exponent argument;
+            # exp(-inf) correctly gives zero weight to unequal intensities.
+            with np.errstate(over="ignore"):
+                range_weight = np.exp(-0.5 * ((neighbor - center) / sigma_range) ** 2)
+            weight = spatial_weight * range_weight
+            weighted_sum[y0:y1, x0:x1] += weight * neighbor
+            weight_sum[y0:y1, x0:x1] += weight
+    # The center contributes weight 1 at every pixel, so division is safe.
+    return np.floor(np.clip(weighted_sum / weight_sum, 0, 255) + 0.5).astype(np.uint8)
+
+
 def combined_enhancement(
     image: np.ndarray, gamma: float, low_percentile: float = 1.0,
     high_percentile: float = 99.5, output_max: int = 255,
+    *, window_size: int = 3, sigma_spatial: float = 1.0, sigma_range: float = 3.0,
 ) -> np.ndarray:
-    """Power-law transformation followed by percentile contrast stretching."""
-    return contrast_stretch(gamma_transform(image, gamma), low_percentile, high_percentile, output_max)
+    """Method 3: bilateral filtering, gamma, then percentile contrast stretching."""
+    filtered = bilateral_filter(image, window_size, sigma_spatial, sigma_range)
+    return contrast_stretch(gamma_transform(filtered, gamma), low_percentile, high_percentile, output_max)
 
 
 def stretch_endpoints(

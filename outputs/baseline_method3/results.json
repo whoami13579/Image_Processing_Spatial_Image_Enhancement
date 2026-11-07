@@ -1,0 +1,425 @@
+{
+  "method": "CDF-min equalization; gamma then percentile contrast stretch",
+  "images": {
+    "1-1.png": {
+      "gamma": 0.5,
+      "gamma_trials": {
+        "0.3": {
+          "minimum": 0,
+          "maximum": 177,
+          "mean": 108.118,
+          "std_dev": 33.365,
+          "at_zero_percent": 1.905,
+          "at_255_percent": 0.0
+        },
+        "0.5": {
+          "minimum": 0,
+          "maximum": 139,
+          "mean": 64.412,
+          "std_dev": 27.966,
+          "at_zero_percent": 1.905,
+          "at_255_percent": 0.0
+        },
+        "0.7": {
+          "minimum": 0,
+          "maximum": 109,
+          "mean": 39.319,
+          "std_dev": 21.367,
+          "at_zero_percent": 1.905,
+          "at_255_percent": 0.0
+        }
+      },
+      "stretch_percentiles": [
+        1.0,
+        99.5
+      ],
+      "stretch_intensities_after_gamma": [
+        0,
+        115
+      ],
+      "combined_output_max": 255,
+      "original": {
+        "minimum": 0,
+        "maximum": 76,
+        "mean": 19.364,
+        "std_dev": 12.958,
+        "at_zero_percent": 1.905,
+        "at_255_percent": 0.0
+      },
+      "gamma_result": {
+        "minimum": 0,
+        "maximum": 139,
+        "mean": 64.412,
+        "std_dev": 27.966,
+        "at_zero_percent": 1.905,
+        "at_255_percent": 0.0
+      },
+      "equalized": {
+        "minimum": 0,
+        "maximum": 255,
+        "mean": 129.132,
+        "std_dev": 75.002,
+        "at_zero_percent": 1.905,
+        "at_255_percent": 0.201
+      },
+      "combined": {
+        "minimum": 0,
+        "maximum": 255,
+        "mean": 142.74,
+        "std_dev": 61.977,
+        "at_zero_percent": 1.905,
+        "at_255_percent": 0.552
+      }
+    },
+    "1-2.png": {
+      "gamma": 0.3,
+      "gamma_trials": {
+        "0.3": {
+          "minimum": 0,
+          "maximum": 224,
+          "mean": 111.709,
+          "std_dev": 29.063,
+          "at_zero_percent": 0.59,
+          "at_255_percent": 0.0
+        },
+        "0.5": {
+          "minimum": 0,
+          "maximum": 205,
+          "mean": 66.949,
+          "std_dev": 26.377,
+          "at_zero_percent": 0.59,
+          "at_255_percent": 0.0
+        },
+        "0.7": {
+          "minimum": 0,
+          "maximum": 188,
+          "mean": 40.984,
+          "std_dev": 21.32,
+          "at_zero_percent": 0.59,
+          "at_255_percent": 0.0
+        }
+      },
+      "stretch_percentiles": [
+        1.0,
+        99.5
+      ],
+      "stretch_intensities_after_gamma": [
+        48,
+        161
+      ],
+      "combined_output_max": 255,
+      "original": {
+        "minimum": 0,
+        "maximum": 165,
+        "mean": 20.312,
+        "std_dev": 14.061,
+        "at_zero_percent": 0.59,
+        "at_255_percent": 0.0
+      },
+      "gamma_result": {
+        "minimum": 0,
+        "maximum": 224,
+        "mean": 111.709,
+        "std_dev": 29.063,
+        "at_zero_percent": 0.59,
+        "at_255_percent": 0.0
+      },
+      "equalized": {
+        "minimum": 0,
+        "maximum": 255,
+        "mean": 129.652,
+        "std_dev": 73.288,
+        "at_zero_percent": 0.59,
+        "at_255_percent": 0.203
+      },
+      "combined": {
+        "minimum": 0,
+        "maximum": 255,
+        "mean": 144.292,
+        "std_dev": 63.309,
+        "at_zero_percent": 3.43,
+        "at_255_percent": 0.544
+      }
+    },
+    "1-3.png": {
+      "gamma": 0.5,
+      "gamma_trials": {
+        "0.3": {
+          "minimum": 60,
+          "maximum": 234,
+          "mean": 149.157,
+          "std_dev": 36.844,
+          "at_zero_percent": 0.0,
+          "at_255_percent": 0.0
+        },
+        "0.5": {
+          "minimum": 23,
+          "maximum": 221,
+          "mean": 107.954,
+          "std_dev": 41.17,
+          "at_zero_percent": 0.0,
+          "at_255_percent": 0.0
+        },
+        "0.7": {
+          "minimum": 9,
+          "maximum": 209,
+          "mean": 79.728,
+          "std_dev": 39.854,
+          "at_zero_percent": 0.0,
+          "at_255_percent": 0.0
+        }
+      },
+      "stretch_percentiles": [
+        1.0,
+        99.5
+      ],
+      "stretch_intensities_after_gamma": [
+        36,
+        194
+      ],
+      "combined_output_max": 255,
+      "original": {
+        "minimum": 2,
+        "maximum": 192,
+        "mean": 52.338,
+        "std_dev": 34.406,
+        "at_zero_percent": 0.0,
+        "at_255_percent": 0.0
+      },
+      "gamma_result": {
+        "minimum": 23,
+        "maximum": 221,
+        "mean": 107.954,
+        "std_dev": 41.17,
+        "at_zero_percent": 0.0,
+        "at_255_percent": 0.0
+      },
+      "equalized": {
+        "minimum": 0,
+        "maximum": 255,
+        "mean": 129.289,
+        "std_dev": 72.933,
+        "at_zero_percent": 0.18,
+        "at_255_percent": 0.253
+      },
+      "combined": {
+        "minimum": 0,
+        "maximum": 255,
+        "mean": 116.15,
+        "std_dev": 66.354,
+        "at_zero_percent": 4.885,
+        "at_255_percent": 0.855
+      }
+    },
+    "1-4.png": {
+      "gamma": 0.5,
+      "gamma_trials": {
+        "0.3": {
+          "minimum": 0,
+          "maximum": 157,
+          "mean": 127.496,
+          "std_dev": 23.745,
+          "at_zero_percent": 0.01,
+          "at_255_percent": 0.0
+        },
+        "0.5": {
+          "minimum": 0,
+          "maximum": 114,
+          "mean": 81.93,
+          "std_dev": 23.092,
+          "at_zero_percent": 0.01,
+          "at_255_percent": 0.0
+        },
+        "0.7": {
+          "minimum": 0,
+          "maximum": 83,
+          "mean": 53.371,
+          "std_dev": 19.307,
+          "at_zero_percent": 0.01,
+          "at_255_percent": 0.0
+        }
+      },
+      "stretch_percentiles": [
+        1.0,
+        99.5
+      ],
+      "stretch_intensities_after_gamma": [
+        23,
+        106
+      ],
+      "combined_output_max": 220,
+      "original": {
+        "minimum": 0,
+        "maximum": 51,
+        "mean": 28.483,
+        "std_dev": 13.018,
+        "at_zero_percent": 0.01,
+        "at_255_percent": 0.0
+      },
+      "gamma_result": {
+        "minimum": 0,
+        "maximum": 114,
+        "mean": 81.93,
+        "std_dev": 23.092,
+        "at_zero_percent": 0.01,
+        "at_255_percent": 0.0
+      },
+      "equalized": {
+        "minimum": 0,
+        "maximum": 255,
+        "mean": 132.041,
+        "std_dev": 76.002,
+        "at_zero_percent": 0.01,
+        "at_255_percent": 0.264
+      },
+      "combined": {
+        "minimum": 0,
+        "maximum": 220,
+        "mean": 156.226,
+        "std_dev": 61.039,
+        "at_zero_percent": 1.153,
+        "at_255_percent": 0.0
+      }
+    },
+    "1-5.png": {
+      "gamma": 0.3,
+      "gamma_trials": {
+        "0.3": {
+          "minimum": 0,
+          "maximum": 246,
+          "mean": 98.062,
+          "std_dev": 22.942,
+          "at_zero_percent": 0.676,
+          "at_255_percent": 0.0
+        },
+        "0.5": {
+          "minimum": 0,
+          "maximum": 240,
+          "mean": 53.598,
+          "std_dev": 19.22,
+          "at_zero_percent": 0.676,
+          "at_255_percent": 0.0
+        },
+        "0.7": {
+          "minimum": 0,
+          "maximum": 234,
+          "mean": 29.687,
+          "std_dev": 14.471,
+          "at_zero_percent": 0.676,
+          "at_255_percent": 0.0
+        }
+      },
+      "stretch_percentiles": [
+        1.0,
+        99.5
+      ],
+      "stretch_intensities_after_gamma": [
+        48,
+        152
+      ],
+      "combined_output_max": 255,
+      "original": {
+        "minimum": 0,
+        "maximum": 226,
+        "mean": 12.691,
+        "std_dev": 8.796,
+        "at_zero_percent": 0.676,
+        "at_255_percent": 0.0
+      },
+      "gamma_result": {
+        "minimum": 0,
+        "maximum": 246,
+        "mean": 98.062,
+        "std_dev": 22.942,
+        "at_zero_percent": 0.676,
+        "at_255_percent": 0.0
+      },
+      "equalized": {
+        "minimum": 0,
+        "maximum": 255,
+        "mean": 132.101,
+        "std_dev": 73.073,
+        "at_zero_percent": 0.676,
+        "at_255_percent": 0.195
+      },
+      "combined": {
+        "minimum": 0,
+        "maximum": 255,
+        "mean": 123.316,
+        "std_dev": 52.947,
+        "at_zero_percent": 3.3,
+        "at_255_percent": 0.565
+      }
+    },
+    "1-6.png": {
+      "gamma": 0.3,
+      "gamma_trials": {
+        "0.3": {
+          "minimum": 0,
+          "maximum": 163,
+          "mean": 111.653,
+          "std_dev": 23.974,
+          "at_zero_percent": 0.323,
+          "at_255_percent": 0.0
+        },
+        "0.5": {
+          "minimum": 0,
+          "maximum": 121,
+          "mean": 66.078,
+          "std_dev": 21.333,
+          "at_zero_percent": 0.323,
+          "at_255_percent": 0.0
+        },
+        "0.7": {
+          "minimum": 0,
+          "maximum": 89,
+          "mean": 39.691,
+          "std_dev": 16.791,
+          "at_zero_percent": 0.323,
+          "at_255_percent": 0.0
+        }
+      },
+      "stretch_percentiles": [
+        1.0,
+        99.5
+      ],
+      "stretch_intensities_after_gamma": [
+        48,
+        146
+      ],
+      "combined_output_max": 255,
+      "original": {
+        "minimum": 0,
+        "maximum": 57,
+        "mean": 18.921,
+        "std_dev": 10.454,
+        "at_zero_percent": 0.323,
+        "at_255_percent": 0.0
+      },
+      "gamma_result": {
+        "minimum": 0,
+        "maximum": 163,
+        "mean": 111.653,
+        "std_dev": 23.974,
+        "at_zero_percent": 0.323,
+        "at_255_percent": 0.0
+      },
+      "equalized": {
+        "minimum": 0,
+        "maximum": 255,
+        "mean": 130.56,
+        "std_dev": 73.669,
+        "at_zero_percent": 0.323,
+        "at_255_percent": 0.23
+      },
+      "combined": {
+        "minimum": 0,
+        "maximum": 255,
+        "mean": 166.079,
+        "std_dev": 60.885,
+        "at_zero_percent": 2.155,
+        "at_255_percent": 0.746
+      }
+    }
+  }
+}

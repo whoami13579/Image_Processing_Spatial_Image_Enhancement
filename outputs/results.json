@@ -1,5 +1,19 @@
 {
-  "method": "CDF-min equalization; gamma then percentile contrast stretch",
+  "method": "CDF-min equalization; bilateral then gamma then percentile contrast stretch",
+  "method3_pipeline": [
+    "original",
+    "bilateral",
+    "gamma",
+    "contrast_stretch"
+  ],
+  "bilateral": {
+    "window_size": 3,
+    "sigma_spatial": 1.0,
+    "sigma_range": 3.0,
+    "boundary": "valid neighbors, renormalized",
+    "rounding": "half up to uint8",
+    "selection": "approved by user after visual review"
+  },
   "images": {
     "1-1.png": {
       "gamma": 0.5,
@@ -35,7 +49,7 @@
       ],
       "stretch_intensities_after_gamma": [
         0,
-        115
+        116
       ],
       "combined_output_max": 255,
       "original": {
@@ -65,10 +79,10 @@
       "combined": {
         "minimum": 0,
         "maximum": 255,
-        "mean": 142.74,
-        "std_dev": 61.977,
-        "at_zero_percent": 1.905,
-        "at_255_percent": 0.552
+        "mean": 141.969,
+        "std_dev": 60.461,
+        "at_zero_percent": 1.17,
+        "at_255_percent": 0.502
       }
     },
     "1-2.png": {
@@ -135,10 +149,10 @@
       "combined": {
         "minimum": 0,
         "maximum": 255,
-        "mean": 144.292,
-        "std_dev": 63.309,
-        "at_zero_percent": 3.43,
-        "at_255_percent": 0.544
+        "mean": 144.609,
+        "std_dev": 62.509,
+        "at_zero_percent": 2.536,
+        "at_255_percent": 0.5
       }
     },
     "1-3.png": {
@@ -205,10 +219,10 @@
       "combined": {
         "minimum": 0,
         "maximum": 255,
-        "mean": 116.15,
-        "std_dev": 66.354,
-        "at_zero_percent": 4.885,
-        "at_255_percent": 0.855
+        "mean": 116.149,
+        "std_dev": 66.35,
+        "at_zero_percent": 4.855,
+        "at_255_percent": 0.84
       }
     },
     "1-4.png": {
@@ -244,8 +258,8 @@
         99.5
       ],
       "stretch_intensities_after_gamma": [
-        23,
-        106
+        28,
+        105
       ],
       "combined_output_max": 220,
       "original": {
@@ -275,9 +289,9 @@
       "combined": {
         "minimum": 0,
         "maximum": 220,
-        "mean": 156.226,
-        "std_dev": 61.039,
-        "at_zero_percent": 1.153,
+        "mean": 154.265,
+        "std_dev": 64.937,
+        "at_zero_percent": 1.862,
         "at_255_percent": 0.0
       }
     },
@@ -345,10 +359,10 @@
       "combined": {
         "minimum": 0,
         "maximum": 255,
-        "mean": 123.316,
-        "std_dev": 52.947,
-        "at_zero_percent": 3.3,
-        "at_255_percent": 0.565
+        "mean": 123.593,
+        "std_dev": 51.997,
+        "at_zero_percent": 2.583,
+        "at_255_percent": 0.55
       }
     },
     "1-6.png": {
@@ -415,10 +429,10 @@
       "combined": {
         "minimum": 0,
         "maximum": 255,
-        "mean": 166.079,
-        "std_dev": 60.885,
-        "at_zero_percent": 2.155,
-        "at_255_percent": 0.746
+        "mean": 166.438,
+        "std_dev": 59.912,
+        "at_zero_percent": 1.441,
+        "at_255_percent": 0.587
       }
     }
   }
